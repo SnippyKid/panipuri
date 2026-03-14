@@ -82,7 +82,8 @@
 .bubbleWrap {
   position: absolute;
   left: clamp(180px, 28vw, 380px);
-  bottom: clamp(140px, 28vh, 320px);
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 4;
   max-width: min(520px, 52vw);
 }

@@ -8,7 +8,7 @@ import styles from "./ShopkeeperScene.module.css";
 /* ──────────────────────────────────────────────────────────
    🔗  PASTE YOUR HOSTED /paid PAGE URL HERE WHEN READY
    ────────────────────────────────────────────────────────── */
-const QR_TARGET_URL = "https://YOUR_HOSTED_URL_HERE/paid";
+const QR_TARGET_URL = "https://panipuri-rose.vercel.app/paid";
 
 /* ─── Typewriter hook ─── */
 function useTypewriter(text, speed = 36) {
@@ -94,8 +94,8 @@ export default function ShopkeeperScene() {
       { x: 0,    opacity: 1, duration: 1.0, ease: "power3.out" }
     );
     tl.fromTo(bubbleRef.current,
-      { scale: 0, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 0.55, ease: "back.out(1.7)" },
+      { scale: 0, opacity: 0, yPercent: -50 },
+      { scale: 1, opacity: 1, yPercent: -50, duration: 0.55, ease: "back.out(1.7)" },
       "-=0.2"
     );
 
@@ -130,8 +130,8 @@ export default function ShopkeeperScene() {
         setStepText(text);
         if (withBtns) setShowBtns(true);
         gsap.fromTo(bubbleRef.current,
-          { scale: 0.88, opacity: 0 },
-          { scale: 1,    opacity: 1, duration: 0.42, ease: "back.out(1.7)" }
+          { scale: 0.88, opacity: 0, yPercent: -50 },
+          { scale: 1,    opacity: 1, yPercent: -50, duration: 0.42, ease: "back.out(1.7)" }
         );
       },
     });

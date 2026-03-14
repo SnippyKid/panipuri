@@ -1,26 +1,24 @@
+/* ─── Page shell ─── */
 .page {
-  position: relative;
-  width: 100%;
-  min-height: 100dvh;
+  position: fixed;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
 
-/* Rich dark warm bg — same language as the main scene */
 .bg {
-  position: fixed;
+  position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 70% at 60% 40%, #78350F33 0%, transparent 60%),
+    radial-gradient(ellipse 90% 80% at 50% 50%, #3B120033 0%, transparent 70%),
     linear-gradient(150deg, #1C0700 0%, #3B1200 40%, #1A0A00 75%, #0D0500 100%);
   z-index: 0;
 }
 
-/* Confetti canvas */
 .confettiCanvas {
-  position: fixed;
+  position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
@@ -28,95 +26,152 @@
   pointer-events: none;
 }
 
-/* Girlfriend image */
-.girlImg {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  height: clamp(300px, 70vh, 700px);
-  width: auto;
-  object-fit: contain;
-  object-position: bottom;
-  z-index: 2;
-  filter: drop-shadow(0 8px 40px rgba(245, 158, 11, 0.25));
-}
-
-/* Message card */
-.card {
+/* ─── Layout: side-by-side on desktop, stacked on mobile ─── */
+.layout {
   position: relative;
-  z-index: 3;
-  margin-left: clamp(160px, 32vw, 500px);
-  margin-right: clamp(16px, 4vw, 60px);
-  background: rgba(255, 251, 240, 0.05);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1.5px solid rgba(245, 158, 11, 0.35);
-  border-radius: 28px;
-  padding: clamp(28px, 4vw, 52px) clamp(24px, 4vw, 52px);
-  box-shadow:
-    0 0 0 1px rgba(245,158,11,0.1),
-    0 20px 80px rgba(0, 0, 0, 0.5),
-    0 0 100px rgba(245, 158, 11, 0.08);
-  max-width: 520px;
-  text-align: center;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 4vw, 64px);
+  padding: 24px 32px;
+  width: 100%;
+  max-width: 960px;
 }
 
-.textBlock {
+/* ─── Girl photo ─── */
+.girlWrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.girlImg {
+  display: block;
+  width: clamp(140px, 28vw, 320px);
+  height: auto;
+  border-radius: 24px;
+  object-fit: cover;
+  border: 3px solid rgba(245, 158, 11, 0.4);
+  box-shadow:
+    0 0 0 6px rgba(245, 158, 11, 0.08),
+    0 16px 60px rgba(0,0,0,0.5);
+}
+
+.girlGlow {
+  position: absolute;
+  inset: -12px;
+  border-radius: 32px;
+  background: radial-gradient(ellipse, rgba(245,158,11,0.25) 0%, transparent 70%);
+  filter: blur(16px);
+  z-index: -1;
+  animation: glow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { opacity: 0.6; transform: scale(0.97); }
+  to   { opacity: 1;   transform: scale(1.03); }
+}
+
+/* ─── Message card ─── */
+.card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 32px;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  background: rgba(255, 251, 240, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(245, 158, 11, 0.3);
+  border-radius: 28px;
+  padding: clamp(28px, 4vw, 48px) clamp(24px, 4vw, 48px);
+  max-width: 420px;
+  box-shadow:
+    0 0 0 1px rgba(245,158,11,0.08),
+    0 24px 80px rgba(0,0,0,0.55),
+    0 0 120px rgba(245,158,11,0.07);
 }
 
 .ufffo {
   font-family: var(--font-pacifico);
-  font-size: clamp(2.2rem, 5.5vw, 3.5rem);
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
   color: #FCD34D;
   line-height: 1;
-  text-shadow: 0 4px 24px rgba(252, 211, 77, 0.5);
-  animation: wobble 1.2s ease-in-out infinite alternate;
+  text-shadow: 0 4px 28px rgba(252, 211, 77, 0.55);
+  animation: wobble 1.4s ease-in-out infinite alternate;
+  display: block;
 }
 
 @keyframes wobble {
-  from { transform: rotate(-3deg) scale(1);   }
-  to   { transform: rotate( 3deg) scale(1.05); }
+  from { transform: rotate(-3deg) scale(1);    }
+  to   { transform: rotate( 3deg) scale(1.06); }
 }
 
 .mainMsg {
   font-family: var(--font-fredoka);
-  font-size: clamp(1.5rem, 3.5vw, 2.4rem);
-  font-weight: 600;
+  font-size: clamp(1.35rem, 3.2vw, 2rem);
+  font-weight: 500;
   color: #FFFBF0;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 .highlight {
   font-family: var(--font-pacifico);
   color: #F59E0B;
-  font-size: 1.1em;
-  text-shadow: 0 2px 16px rgba(245, 158, 11, 0.5);
+  font-size: 1.08em;
+  text-shadow: 0 2px 20px rgba(245,158,11,0.55);
+}
+
+.hearts {
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  letter-spacing: 6px;
+  animation: heartbeat 1.2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1);    }
+  50%       { transform: scale(1.12); }
 }
 
 .sub {
   font-family: var(--font-nunito);
-  font-size: clamp(0.82rem, 1.5vw, 1rem);
-  color: rgba(254, 243, 199, 0.55);
-  line-height: 1.5;
+  font-size: clamp(0.82rem, 1.6vw, 0.98rem);
+  color: rgba(254, 243, 199, 0.5);
+  line-height: 1.6;
 }
 
 .backBtn {
+  margin-top: 6px;
   font-family: var(--font-fredoka);
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(1rem, 2vw, 1.2rem);
   font-weight: 600;
   letter-spacing: 0.03em;
   background: linear-gradient(135deg, #F59E0B, #EF4444);
   color: white;
   border: none;
   border-radius: 14px;
-  padding: 14px 32px;
+  padding: 13px 28px;
   cursor: pointer;
-  box-shadow: 0 4px 24px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 4px 24px rgba(245,158,11,0.4);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
 }
 .backBtn:hover  { transform: scale(1.05) translateY(-2px); box-shadow: 0 8px 32px rgba(245,158,11,0.55); }
 .backBtn:active { transform: scale(0.97); }
+
+/* ─── Mobile: stack vertically ─── */
+@media (max-width: 600px) {
+  .layout {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 16px;
+  }
+  .girlImg {
+    width: clamp(120px, 45vw, 200px);
+    border-radius: 18px;
+  }
+  .card {
+    padding: 24px 20px;
+    gap: 12px;
+  }
+}
