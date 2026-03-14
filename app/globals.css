@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Nunito:wght@300..900&family=Pacifico&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --font-fredoka: 'Fredoka', sans-serif;
+  --font-nunito: 'Nunito', sans-serif;
+  --font-pacifico: 'Pacifico', cursive;
+
+  --color-golden: #F59E0B;
+  --color-amber: #D97706;
+  --color-deep-amber: #92400E;
+  --color-chutney: #15803D;
+  --color-chutney-light: #4ADE80;
+  --color-spicy: #DC2626;
+  --color-tamarind: #7C2D12;
+  --color-cream: #FEF9EE;
+  --color-sky: #BAE6FD;
+  --color-sky-deep: #0EA5E9;
+  --color-dusk: #FCD34D;
+  --color-bg-start: #FEF3C7;
+  --color-bg-end: #FDE68A;
+  --color-cloud: #FFFFFF;
+  --color-cloud-shadow: #E5E7EB;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-nunito);
+  background: #0D0500;
+  color: #FFFBF0;
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100dvh;
+}
+
+/* Prevent scrollbar shift */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-start);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-golden);
+  border-radius: 99px;
+}
